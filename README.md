@@ -54,55 +54,41 @@ Cada comando interpreta una acción diferente según el método HTTP indicado:
   - **Destructuring** para extraer argumentos fácilmente.  
   - **Spread Operator (`...`)** para clonar y combinar objetos al enviar datos.  
 - Se agregó manejo de errores con mensajes claros mediante `try/catch`.  
-- Los logs en consola son descriptivos y fáciles de leer (incluyen emojis y textos cortos).  
+- Los logs en consola son descriptivos y fáciles de leer.
 
 ---
 
-### 🧠 **Mejora en la estructura del index.js**
+### 🚀 **Mejoras y decisiones de diseño**
 
-En la versión que se estuvo viendo en clase, el manejo de los comandos se hacía con una serie de if y else if.
-Aunque funciona, el código se ve largo y repetitivo, y cada vez que había que agregar un nuevo comando, era necesario sumar más condicionales.
+Durante el desarrollo del proyecto hice varios cambios para mejorar el código y hacerlo más ordenado y eficiente.
+A continuación, explico las principales decisiones:
 
-Por eso reemplacé esa lógica por una tabla de comandos (también conocida como dispatch table).
-Básicamente es un objeto donde cada clave representa un comando posible (por ejemplo, "GET products" o "DELETE productById") y su valor es una función que ejecuta la acción correspondiente.
+1. Reemplacé los if / else if por una tabla de comandos
 
-Esto permitió:
+En lugar de usar muchos condicionales para cada comando, armé una tabla de comandos (dispatch table), que es un objeto donde cada clave representa un comando (por ejemplo "GET products" o "DELETE productById") y su valor es la función que debe ejecutarse.
 
-Hacer el código más limpio y legible.
+Esto me permitió:
+   - Hacer el código más corto y legible.
+   - Evitar estructuras repetitivas.
+   - Poder agregar nuevos comandos fácilmente sin tocar toda la lógica.
+   - Validar parámetros directamente en cada comando, mostrando mensajes claros si falta algo.
 
-Evitar estructuras repetitivas.
+En resumen, el código del index.js ahora es más limpio, modular y fácil de mantener.
 
-Facilitar la extensión del programa (si quiero agregar un nuevo método, solo sumo una entrada al objeto).
+2. Usé forEach en lugar de map
 
-Además, ahora cada comando se encarga de validar sus propios parámetros y mostrar mensajes claros si falta algo.
-Esta forma es mucho más escalable y profesional para manejar una CLI sencilla en Node.js.
+En el ejemplo que se vió se usaba .map() solo para imprimir productos, pero ese método devuelve un nuevo array con los resultados, lo cual no tenía sentido en este caso.
+Por eso lo reemplacé por .forEach(), que está pensado justamente para recorrer un array y ejecutar una acción sin devolver nada.
 
----
+Esto hace que el código sea más semántico, un poco más eficiente, y además refleja mejor la intención del bloque: mostrar los productos, no transformarlos.
 
-### 📊 **Mejoras Generales**
-Comparado con el código que vimos en las clases, esta versión tiene:
-- **Funciones con nombres más claros** y consistentes.  
-- **Mensajes de consola más organizados** y fáciles de identificar.  
-- **Manejo de errores mejorado** con `console.error`.  
-- **Guía de ayuda** cuando el usuario ingresa comandos incorrectos.  
-- **Función de actualización (`PUT`)** más completa y sin errores de texto.  
-- **Mejora de rendimiento** usando `forEach` en lugar de `map` para recorrer arrays de forma más semántica.
-- **Tabla de comandos en** index.js, reemplazando los if / else para mayor eficiencia y claridad.
+3. Pequeñas mejoras generales
 
----
-
-### 🧠 **Por qué usé `forEach` en lugar de `map`**
-En el código que se vió en clase se utilizaba `.map()` solo para imprimir cada producto, pero ese método **devuelve un nuevo array** con los resultados de la iteración, que en este caso no se usaban.  
-Por eso decidí cambiarlo por **`.forEach()`**, que está pensado justamente para **recorrer un array y ejecutar una acción** sin necesidad de retornar nada.  
-
-Esto hace que el código sea **más semántico, un poco más eficiente** y además refleja mejor la intención: *mostrar los productos*, no transformarlos.  
+Además de lo anterior, también hice algunos ajustes para pulir el proyecto:
+   - Funciones con nombres más descriptivos, lo que facilita entender qué hace cada una.
+   - Manejo de errores mejorado usando console.error cuando corresponde.
+   - Mensajes de ayuda automáticos cuando el usuario ingresa comandos incorrectos.
+   - Corrección del header JSON (quitando espacios innecesarios).
+   - Estructura modular y validación de parámetros, lo que hace que el código sea más escalable.
 
 ---
-
-### 🚀 **Conclusión**
-Con este proyecto logré comprender mejor cómo funcionan:
-- Los **argumentos del proceso (`process.argv`)**.  
-- Las **peticiones HTTP con fetch** en Node.js.  
-- Y cómo aplicar **estructuras modulares y asincronismo** de manera limpia.  
-
-Mi objetivo fue dejar el código lo más **ordenado, entendible y profesional** posible, cuidando los detalles y aplicando buenas prácticas.  

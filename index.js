@@ -1,4 +1,3 @@
-// index.js
 import {
   listarProductos,
   obtenerProductoPorId,
@@ -11,7 +10,7 @@ const args = process.argv.slice(2);
 const metodo = args[0];
 const recurso = args[1];
 
-// 🧩 Tabla de comandos
+//Tabla de comandos
 const comandos = {
   "GET products": () => listarProductos(),
 
@@ -20,7 +19,7 @@ const comandos = {
   "POST products": () => {
     const [_, __, title, price, category] = args;
     if (!title || !price || !category) {
-      return console.log("⚠️ Parámetros faltantes. Usa: npm run start POST products <title> <price> <category>");
+      return console.log("Parámetros faltantes. Usa: npm run start POST products <title> <price> <category>");
     }
     crearProducto({ title, price, category });
   },
@@ -28,7 +27,7 @@ const comandos = {
   "PUT products": () => {
     const [_, __, id, title, price, category] = args;
     if (!id || !title || !price || !category) {
-      return console.log("⚠️ Parámetros faltantes. Usa: npm run start PUT products <id> <title> <price> <category>");
+      return console.log("Parámetros faltantes. Usa: npm run start PUT products <id> <title> <price> <category>");
     }
     actualizarProducto({ id, title, price, category });
   },
@@ -36,26 +35,28 @@ const comandos = {
   "DELETE productById": () => borrarProducto(recurso),
 };
 
-// 🧠 Determinar la clave del comando
+//Determina la clave del comando
 let clave = `${metodo} ${recurso}`;
 if (recurso?.startsWith("products/")) {
   clave = `${metodo} productById`;
 }
 
-// Ejecutar comando correspondiente
+//Ejecuta comando correspondiente
 const accion = comandos[clave];
 
 if (accion) {
   accion();
 } else {
-  console.log("⚠️ Comando no reconocido o parámetros incorrectos.\n");
-  console.log("📘 Ejemplos válidos:");
-  console.log("  npm run start GET products");
-  console.log("  npm run start GET products/5");
-  console.log('  npm run start POST products "Remera Negra" 2500 ropa');
-  console.log("  npm run start PUT products 3 'Campera Azul' 3500 abrigo");
-  console.log("  npm run start DELETE products/7");
+  console.log("Comando no reconocido o parámetros incorrectos.\n");
+  console.log("Ejemplos válidos:");
+  console.log("npm run start GET products");
+  console.log("npm run start GET products/5");
+  console.log("npm run start POST products 'Remera Negra' 2500 ropa");
+  console.log("npm run start PUT products 3 'Campera Azul' 3500 abrigo");
+  console.log("npm run start DELETE products/7");
 }
+
+//Versión comentada funcional con IF Y ELSE IF
 
 /*if (metodo === "GET" && recurso === "products") {
   listarProductos();
