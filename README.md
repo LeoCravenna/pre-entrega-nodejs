@@ -79,7 +79,7 @@ Esta forma es mucho más escalable y profesional para manejar una CLI sencilla e
 
 ---
 
-### 📊 **Mejoras**
+### 📊 **Mejoras Generales**
 Comparado con el código que vimos en las clases, esta versión tiene:
 - **Funciones con nombres más claros** y consistentes.  
 - **Mensajes de consola más organizados** y fáciles de identificar.  
