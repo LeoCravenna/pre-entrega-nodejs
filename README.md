@@ -1,8 +1,8 @@
 # Proyecto Node.js - Gestión de Productos (FakeStore API)
 
 ### 💡 Descripción  
-Este proyecto fue desarrollado como parte de la pre-entrega del curso de **Node.js** de Talento Tech.  
-El objetivo es crear una pequeña aplicación que funcione desde la terminal y permita interactuar con la API pública de **FakeStore**, realizando operaciones básicas como consultar, agregar, actualizar y eliminar productos.
+Este proyecto fue desarrollado como parte de la pre-entrega del curso de Node.js de Talento Tech.
+El objetivo es crear una aplicación simple que se ejecute desde la terminal y permita interactuar con la API pública de FakeStore, realizando operaciones básicas como consultar, agregar, actualizar y eliminar productos.
 
 ---
 
